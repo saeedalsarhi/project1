@@ -129,7 +129,7 @@ def review(book_id):
 
     if user_id and rating_score and review is not None:
         
-        previous_review = db.execute("SELECT * FROM reviews WHERE user_id = :user_id", {"user_id": user_id}).first()
+        previous_review = db.execute("SELECT * FROM reviews WHERE user_id = :user_id AND book_id = :book_id", {"user_id": user_id, "book_id": book_id}).first()
 
         if previous_review is not None:
             return render_template("error.html", messege="A user can only rate a book once.")
