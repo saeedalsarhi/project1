@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="container">
+    <!-- Search Form -->
+    <form action="{{ url_for('search') }}" method="POST">
+        <div class="row">
+            <!-- Search form -->
+            <div class="col-md-10">
+                <input class="form-control" name="search-text" type="text" placeholder="Search for a book..." aria-label="Search">
+            </div>
+        
+            <div class="col-md-2">
+                <button class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+    <br>
+    <table id="booksTable" class="table table-striped table-bordered" style="width: 100%">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+                <tr class="clickable-row" data-href="{{ url_for('book', book_id=book.id) }}">
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.averege_score }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            $('#booksTable').DataTable({
+                "searching": false
+            });
+
+            $(".clickable-row").click(function() {
+                window.location = $(this).data("href");
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block logout %}
+    <div class="" style="position: fixed; bottom: 10px; right: 10px;">
+        <a class="btn btn-primary" href="{{ url_for('logout') }}">Logout</a>
+    </div>
+{% endblock %}

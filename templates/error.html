@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    Error
+{% endblock %}
+
+{% block body %}
+    {{ messege }}
+    <a href="{{ url_for('index') }}">Go back</a>
+{% endblock %}
+
+{% block logout %}
+    <div class="" style="position: fixed; bottom: 10px; right: 10px;">
+        <a class="btn btn-primary" href="{{ url_for('logout') }}">Logout</a>
+    </div>
+{% endblock %}

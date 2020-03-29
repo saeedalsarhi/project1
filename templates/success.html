@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    Success
+{% endblock %}
+
+{% block body %}
+    {{ messege }}
+{% endblock %}
+
+{% block logout %}
+    <div class="" style="position: fixed; bottom: 10px; right: 10px;">
+        <a class="btn btn-primary" href="{{ url_for('logout') }}">Logout</a>
+    </div>
+{% endblock %}
